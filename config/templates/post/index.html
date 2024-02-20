@@ -1,0 +1,10 @@
+{% extends "../base.html" %}
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+{% for item in posts %}
+<ul>
+    <li>{{item.title}}</li>
+</ul>
+{% endfor %}
+{% endblock content %}
