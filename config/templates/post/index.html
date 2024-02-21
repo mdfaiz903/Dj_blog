@@ -2,9 +2,23 @@
 {% block title %}Home{% endblock title %}
 
 {% block content %}
-{% for item in posts %}
-<ul>
-    <li>{{item.title}}</li>
-</ul>
+{% for items in posts %}
+<div class="container my-2">
+    <div class="card">
+        <div class="media card-body">
+            <img class="mr-3" src="..." alt="Generic placeholder image">
+            <a href="http://">
+                <p>{{items.author}}</p>
+            </a>
+            <div class="media-body">
+                <a href="http://">
+                    <h5 class="mt-0">{{items.title}}</h5>
+
+                </a>
+              <p>{{items.description}}</p>
+            </div>
+          </div>
+    </div>
+</div>
 {% endfor %}
 {% endblock content %}
