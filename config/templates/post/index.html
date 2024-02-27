@@ -1,6 +1,7 @@
 {% extends "../base.html" %}
 {% block title %}Home{% endblock title %}
 
+{% load humanize %}
 {% block content %}
 {% for post in post_data %}
 <div class="container my-2">
@@ -11,10 +12,11 @@
       
     
             <a href="http://">
-                <p>{{ post.author }}</p>
+                <p>{{ post.author }} </p>
             </a>
+            at {{ post.created_date | naturaltime }}
             <div class="media-body">
-                <a href="http://">
+                <a href="{% url 'postdetails' post.id %}">
                     <h5 class="mt-0">{{ post.title }}</h5>
                 </a>
               <p>{{ post.description }}</p>
