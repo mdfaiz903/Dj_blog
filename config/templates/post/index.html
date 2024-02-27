@@ -2,20 +2,22 @@
 {% block title %}Home{% endblock title %}
 
 {% block content %}
-{% for items in posts %}
+{% for post in post_data %}
 <div class="container my-2">
     <div class="card">
         <div class="media card-body">
-            <img class="mr-3" src="..." alt="Generic placeholder image">
+          
+                 <img class="mr-3 rounded-circle" src="{{  post.author.userprofiledata.image.url }}" alt="Profile Image" style="height: 100px;width:100px;" >
+      
+    
             <a href="http://">
-                <p>{{items.author}}</p>
+                <p>{{ post.author }}</p>
             </a>
             <div class="media-body">
                 <a href="http://">
-                    <h5 class="mt-0">{{items.title}}</h5>
-
+                    <h5 class="mt-0">{{ post.title }}</h5>
                 </a>
-              <p>{{items.description}}</p>
+              <p>{{ post.description }}</p>
             </div>
           </div>
     </div>

@@ -3,6 +3,9 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from . forms import CustomUserCreationForm
+from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
+from . models import profileModel
 # Create your views here.
 
 def loginuser(request):
@@ -47,3 +50,22 @@ def signupView(request):
         form = CustomUserCreationForm()
     return render(request,'user/signup.html',{'form':form})
 
+
+
+# class profileView(LoginRequiredMixin,generic.View):
+#     def get(self,request):
+       
+#         return render(request,'user/profile.html',)
+#     def post(self,request):
+#         ...
+
+from django.shortcuts import get_object_or_404
+
+class profileView(LoginRequiredMixin, generic.View):
+    def get(self, request):
+        return render(request, 'user/profile.html')
+    
+    
+    
+    
+    
