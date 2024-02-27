@@ -6,8 +6,31 @@
     <div class="row">
         <h1 class="text-center">Details</h1>
         <hr>
-        <div class="col-md-6">
-           
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="media card-body">
+                  
+                         <img class="mr-3 rounded-circle" src="{{  object.author.userprofiledata.image.url }}" alt="Profile Image" style="height: 100px;width:100px;" >
+                         {% if object.author == user %}
+          
+       
+                         <button type="submit" class="btn btn-info" >Edit</button>
+                         <button type="submit" class="btn btn-danger" >Delete</button>
+              
+                           {% endif %}
+            
+                    <a href="http://">
+                        <p>{{ object.author }} </p>
+                    </a>
+                    at {{ object.created_date }}
+                    <div class="media-body">
+                        
+                        <h5 class="mt-0">{{ object.title }}</h5>
+                        
+                      <p>{{ object.description }}</a></p>
+                    </div>
+                  </div>
+            </div>
         </div>
     </div>
 </div>

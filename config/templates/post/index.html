@@ -19,7 +19,7 @@
                 <a href="{% url 'postdetails' post.id %}">
                     <h5 class="mt-0">{{ post.title }}</h5>
                 </a>
-              <p>{{ post.description }}</p>
+              <p>{{ post.description|truncatewords_html:10  }} <a href="{% url 'postdetails' post.id %}">...Red more</a></p>
             </div>
           </div>
     </div>
