@@ -1,0 +1,21 @@
+{% extends "../base.html" %}
+{% block title %}
+  Confirm Delete
+{% endblock title %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h2 class="text-center ">Confirmation</h2>
+            <hr>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <h1 class="text-center text-danger ">Do you confirm to Delete This Post</h1>
+                <button type="submit"class='btn btn-danger'>Confirm</button>
+                <a href="{% url 'postdetails' object.id %}" class="btn btn-info" >Cancle</a>
+                </form>
+        </div>
+    </div>
+  </div>
+{% endblock content %}
