@@ -5,7 +5,8 @@ from django.contrib import messages
 from . forms import CustomUserCreationForm
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
-from . models import profileModel
+from . models import userUpdateForm,profileUpdateForm
+
 # Create your views here.
 
 def loginuser(request):
@@ -59,12 +60,29 @@ def signupView(request):
 #     def post(self,request):
 #         ...
 
-from django.shortcuts import get_object_or_404
+
+
+
+
 
 class profileView(LoginRequiredMixin, generic.View):
     def get(self, request):
-        return render(request, 'user/profile.html')
+        u_form = userUpdateForm(instance=request.user)
+        p_form = profileUpdateForm(instance=request.user.userprofiledata)
+        return render(request, 'user/profile.html', {'u_form': u_form, 'p_form': p_form})
     
+    def post(self, request):
+        u_form = userUpdateForm(request.POST, instance=request.user)
+        p_form = profileUpdateForm(request.POST, request.FILES, instance=request.user.userprofiledata)
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            return redirect('profile')
+        else:
+            # Handle invalid form submission
+            # You may want to render the form again with validation errors
+            return render(request, 'user/profile.html', {'u_form': u_form, 'p_form': p_form})
+
     
     
     
