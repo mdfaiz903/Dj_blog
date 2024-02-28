@@ -1,0 +1,1 @@
+default_app_config = 'user.apps.UserConfig' #user-> my app name
