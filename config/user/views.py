@@ -18,6 +18,10 @@ from django.utils.http import urlsafe_base64_encode,urlsafe_base64_decode
 User_model = get_user_model()
 
 # Create your views here.
+
+
+
+
 @login_required
 def Pass_change(request):
     if request.user.is_authenticated:

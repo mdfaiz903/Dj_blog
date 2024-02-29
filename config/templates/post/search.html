@@ -1,0 +1,25 @@
+{% extends "../base.html" %}
+{% block title %}Search{% endblock title %}
+
+{% block content %}
+{% for p in result %}
+<div class="container my-2">
+    <div class="card">
+        <div class="media card-body">
+          
+      
+            <div class="media-body">
+                <a href="{% url 'postdetails' p.id %}">
+                    <h5 class="mt-0">{{ p.title }}</h5>
+                </a>
+              <p>{{ p.description|truncatewords_html:10  }} <a href="{% url 'postdetails' p.id %}">...Red more</a></p>
+            </div>
+         
+         
+       
+  
+          </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock content %}

@@ -1,10 +1,28 @@
-from django.shortcuts import render
+from django.shortcuts import render,HttpResponse
 from django.views import generic
 from . models import post_model
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.urls import reverse_lazy
-
+from django.db.models import Q
 # Create your views here.
+def searchView(request):
+    if request.method=='POST':
+        search_input = request.POST.get('search','')
+        if search_input:
+            result = post_model.objects.filter(
+                (Q(title__icontains=search_input)) | (Q(description__icontains=search_input))
+            ).distinct()
+        else:
+            result = []
+            return HttpResponse("<h1>No search input provided.</h1>")
+
+
+        context={
+            'result':result
+        } 
+    return render(request,'post/search.html',context)
+
+
 class PostUpdateView(LoginRequiredMixin,UserPassesTestMixin,generic.UpdateView):
     model = post_model
     template_name = 'post/post_update.html'
