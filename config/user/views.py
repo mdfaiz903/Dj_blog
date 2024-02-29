@@ -53,17 +53,6 @@ def signupView(request):
 
 
 
-# class profileView(LoginRequiredMixin,generic.View):
-#     def get(self,request):
-       
-#         return render(request,'user/profile.html',)
-#     def post(self,request):
-#         ...
-
-
-
-
-
 
 class profileView(LoginRequiredMixin, generic.View):
     def get(self, request):
