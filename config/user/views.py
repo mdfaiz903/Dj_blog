@@ -1,14 +1,30 @@
 from django.shortcuts import render,redirect
-from django.contrib.auth import authenticate,login,logout
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import authenticate,login,logout,update_session_auth_hash
+from django.contrib.auth.forms import AuthenticationForm,PasswordChangeForm
 from django.contrib import messages
 from . forms import CustomUserCreationForm
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from . models import userUpdateForm,profileUpdateForm
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
-
+@login_required
+def Pass_change(request):
+    if request.user.is_authenticated:
+        if request.method=='POST':
+            form = PasswordChangeForm(data=request.POST,user=request.user)
+                    # PasswordChangeForm(data=request.POST,user = request.user)
+            if form.is_valid():
+                form.save()
+                update_session_auth_hash(request,form.user)
+                messages.success(request,"Successfully Password Changed")
+                return redirect('login')
+        else:
+            form = PasswordChangeForm(user=request.user)
+        return render(request,'user/password_change.html',{'form':form})
+   
 def loginuser(request):
     if request.method == 'POST':
         form = AuthenticationForm(request=request,data=request.POST)

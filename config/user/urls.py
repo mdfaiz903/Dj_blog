@@ -1,9 +1,10 @@
 
 from django.urls import path
 from django.contrib.auth.views import PasswordResetView,PasswordResetDoneView,PasswordResetConfirmView,PasswordResetCompleteView
-from .views import loginuser,logoutUser,signupView,profileView
+from .views import loginuser,logoutUser,signupView,profileView,Pass_change
 urlpatterns = [
 
+    path('Pass_change/',Pass_change,name='Pass_change'),
     path('login/',loginuser,name='login'),
     path('logout/',logoutUser,name='logout'),
     path('signup/',signupView,name='signup'),
